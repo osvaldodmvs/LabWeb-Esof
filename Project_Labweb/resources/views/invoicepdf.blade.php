@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<title>Invoice</title>
 
 <table aria-labelledby="item-invoice">
     <tr>

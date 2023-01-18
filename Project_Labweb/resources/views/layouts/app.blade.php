@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Viral VR') }}</title>
     <link rel="shortcut icon" href="{{asset ('favicon.ico')}}" type="image/x-icon">
 
-    <!-- Fonts -->  
+    <!-- Fonts -->
     
     <link href="/style.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css?family=Saira|saira:700|saira:600|saira:500|saira:400|Nunito" rel="stylesheet">

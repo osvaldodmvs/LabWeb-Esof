@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Evento;
+use App\Mail\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailables\Attachment;
+use Illuminate\Mail\Mailer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Mail\Mailable;
 use Mail;
 use App\Mail\SendMail;
 
@@ -51,4 +57,14 @@ class MailController extends Controller
             return redirect()->back();
         }
     }
+
+    public function mail_invoice($pdf){
+        $user = Auth::user();
+        $email = $user->email;
+        $invoice = (new Invoice())->attach($pdf->output(), [
+            'as' => 'invoice.pdf',
+        ]);
+        Mail::to($email)->send($invoice);
+    }
+
 }

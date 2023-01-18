@@ -1,20 +1,30 @@
-<h1>Invoice</h1>
+<!DOCTYPE html>
+<html>
 
-<table>
+<table aria-labelledby="item-invoice">
     <tr>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th>Price</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
     </tr>
-    @foreach ($data['items'] as $item)
+    @foreach ($data as $item)
         <tr>
             <td>{{ $item['name'] }}</td>
             <td>{{ $item['quantity'] }}</td>
-            <td>{{ $item['price'] }}</td>
+            <td>{{ $item['price']*$item['quantity'] }}€</td>
         </tr>
     @endforeach
     <tr>
-        <td colspan="2">Total</td>
-        <td>{{ $data['total'] }}</td>
+        <br><br><br><br><br><br><br>
+    </tr>
+    <tr>
+        <td colspan="3">Total: {{$value}}€</td>
+        <?php
+        $date=date('d-m-Y H:i');
+        ?>
+        <br>
+        <tr><td>{{$date}}</td></tr>
     </tr>
 </table>
+
+</html>

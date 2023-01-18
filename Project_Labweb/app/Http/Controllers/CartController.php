@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Giftcard;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
@@ -9,10 +10,12 @@ use App\Models\Product;
 use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Stripe\Charge;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PDFController;
 
 class CartController extends Controller
 {
@@ -27,18 +30,74 @@ class CartController extends Controller
         return view('cart.cart', compact('items'));
     }
 
-    public function add(Request $request)
-    {
+    public function add_giftcard(Request $request){
 
-        $request->validate([
+        $validated = $request->validate([
             'id' => 'required',
             'name' => 'required',
-            'price' => 'required',
-            'day' => 'required',
-            'hour' => 'required',
-            'quantity' => 'required|max:{{product->quantity}}|min:1',
+            'price' => 'required|min:5|max:25|numeric',
+            'quantity' => 'required|min:0',
+            'destiny' => 'required',
         ]);
 
+        if (\Cart::isEmpty()) {
+            Order::create([
+                'user_id' => auth()->user()->id,
+            ]);
+        }
+
+        $user_id = auth()->user()->id;
+
+        $order = Order::where('user_id', $user_id)->latest()->pluck('id')->first();
+
+        $now = date('d-m-Y');
+        $now_id = date('Y-m-d H:i:s');
+        $one_year = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($now_id)));
+
+        $code = Str::random(5) . Str::random(5, '0123456789');
+
+        $gift=Giftcard::create([
+            'order_id' => $order,
+            'start_date' => $now_id,
+            'end_date' => $one_year,
+            'code' => $code,
+            'value' => $request->price,
+            'recipient' => $request->destiny,
+            'is_active' => true,
+        ]);
+
+        \Cart::add(array(
+                'id' => $request->id . $now_id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'attributes' => array(
+                    'destiny' => $request->destiny,
+                    'code' => $code,
+                    'item_id' => $gift->id,
+                ),
+            )
+        );
+
+        
+
+        return redirect()->route('cart_index');
+
+    }
+
+    public function add(Request $request)
+    {
+        $id=$request->server('HTTP_REFERER');
+        $id = substr($id, -1);
+        $price=Product::findorfail($id)->price;
+        $request->validate([
+            'name' => 'required',
+            'day' => 'required',
+            'hour' => 'required',
+            'quantity' => 'required|min:1',
+        ]);
+        $request['id'] = $id;
+        $request['price'] = $price;
         $start_date = date('Y-m-d H:i:s', strtotime($request->day . ' ' . $request->hour));
         $end_date = date('Y-m-d H:i:s', strtotime($request->day . ' ' . $request->hour . ' +1 hour '));
 
@@ -190,11 +249,19 @@ class CartController extends Controller
         }
         $items = \Cart::getContent()->toArray();
         $itemIds = array();
+        $giftIds = array();
         foreach ($items as $item) {
-            $itemIds[] = $item['attributes']['item_id'];
+            if(substr($item['id'], 0, 1)=='G'){
+                $giftIds[] = $item['attributes']['item_id'];
+            } else {
+                $itemIds[] = $item['attributes']['item_id'];
+            }
         }
         foreach ($itemIds as $itemId) {
             Item::destroy($itemId);
+        }
+        foreach ($giftIds as $giftId) {
+            Giftcard::destroy($giftId);
         }
         \Cart::clear();
         $user_id = auth()->user()->id;
@@ -207,12 +274,22 @@ class CartController extends Controller
     {
         $items = \Cart::getContent()->toArray();
         $itemIds = array();
+        $giftIds = array();
         foreach ($items as $item) {
-            $itemIds[] = $item['attributes']['item_id'];
+            if(substr($item['id'], 0, 1)=='G'){
+                $giftIds[] = $item['attributes']['item_id'];
+            } else {
+                $itemIds[] = $item['attributes']['item_id'];
+            }
         }
         foreach ($itemIds as $itemId) {
             if ($itemId == $request->actual_id) {
                 Item::destroy($itemId);
+            }
+        }
+        foreach ($giftIds as $giftId) {
+            if ($giftId == $request->actual_id) {
+                Giftcard::destroy($giftId);
             }
         }
         \Cart::remove($request->id);
@@ -249,10 +326,9 @@ class CartController extends Controller
             $user->charge($total * 100, $paymentMethod);
         } catch (\Exception $e) {
             // Handle any errors
-            return redirect()->back()->withError($e->getMessage());
+            return redirect()->back()->with('error', 'Payment Failed!');
         }
         // Clear the cart
-        \Cart::clear();
         $order = Order::where('user_id', $user->id)->latest()->pluck('id')->first();
         Payment::create([
             'order_id' => $order,
@@ -265,6 +341,11 @@ class CartController extends Controller
 
     
     public function success(){
+        $data = \Cart::getContent()->toArray();
+        $value = \Cart::getTotal();
+        \Cart::clear();
+        $pdf = new PDFController();
+        $pdf->generatePDF($data, $value);
         return view('cart.success');
     }
 

@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="d-flex" style="height: 350px; margin-top:-50px;">
-    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
+    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" 
+    style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
 </div>
 
 <div class="d-flex justify-content-center align-items-center viral_blue_bg_color" style="height: 100px">
@@ -23,7 +24,7 @@
 @endif
 
 <div class="container text-center">
-<table class="table">
+<table class="table" aria-labelledby="tabela-checkout">
     <thead style="padding-right: 400px;padding-left:540px">
 		<tr>
         	<th scope="col">Produto</th>
@@ -61,7 +62,8 @@
         <input id="card-holder-name" type="text" placeholder="Nome no cartão" name="card-holder-name">
  
         <!-- Stripe Elements Placeholder -->
-        <div id="card-element" style="background-color:white;border-radius:5px;height:30px;padding-top:5px;padding-bottom:5px;margin-top:5px;margin-bottom:5px"></div>
+        <div id="card-element" style="background-color:white;border-radius:5px;height:30px;padding-top:5px;
+        padding-bottom:5px;margin-top:5px;margin-bottom:5px"></div>
  
         <button id="card-button" class="btn btn-success m-0" data-secret="{{ $intent->client_secret }}">
             Processar Pagamento

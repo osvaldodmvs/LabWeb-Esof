@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="d-flex" style="height: 350px; margin-top:-50px;">
-    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
+    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt=""
+    style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
 </div>
 
 <div class="d-flex justify-content-center align-items-center viral_blue_bg_color" style="height: 100px">
@@ -52,7 +53,8 @@
                                     Oferecemos uma ampla variedade de experiências de realidade virtual
                                     para que se encontre ao alcance de todos. As experiências VR constam
                                     de um serviço de tempo limitado,  acompanhadas pelo nosso staff, onde
-                                    o utilizador poderá usufruir de diversos jogos e simulações disponíveis em cada tecnologia.
+                                    o utilizador poderá usufruir de diversos jogos e simulações disponíveis
+                                     em cada tecnologia.
                                 </h6>
                                 </div>
                             </div>
@@ -60,7 +62,8 @@
                         </div>
                     </div>
                 <div class="col-md-6">
-            <img src="{{ url('/storage/img/viral_1.jpg') }}" class="img-fluid" style="margin-bottom:80px;margin-top:40px;object-fit:cover">
+            <img src="{{ url('/storage/img/viral_1.jpg') }}" class="img-fluid"
+            style="margin-bottom:80px;margin-top:40px;object-fit:cover" alt="viral1">
         </div>
     </div>
 </div>
@@ -97,11 +100,13 @@
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                   2018
                                 </button>
                               </h2>
-                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                              <div id="collapseOne" class="accordion-collapse collapse show"
+                              aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     O projeto Viral nasce fruto, de uma enorme paixão pela realidade virtual
                                     e as inovações tecnológicas, e começa a tomar forma um conceito inovador.
@@ -110,37 +115,46 @@
                             </div>
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                   2019
                                 </button>
                               </h2>
-                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                              <div id="collapseTwo" class="accordion-collapse collapse"
+                              aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                Da ideia ao papel, o projeto Viral inicia a fase de planeamento e execução, com novos parceiros e parcerias.
+                                Da ideia ao papel, o projeto Viral inicia a fase de planeamento e execução,
+                                 com novos parceiros e parcerias.
                                 </div>
                               </div>
                             </div>
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                   2020
                                 </button>
                               </h2>
-                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                              <div id="collapseThree" class="accordion-collapse collapse"
+                              aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    O projeto Viral inicia a sua actividade, com a abertura da primeira sala de realidade virtual.
+                                    O projeto Viral inicia a sua actividade, com a abertura da primeira
+                                     sala de realidade virtual.
                                 </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                     2021
                                   </button>
                                 </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div id="collapseFour" class="accordion-collapse collapse"
+                                aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                   <div class="accordion-body">
-                                    Continuando a desenvolver e melhorar a tecnologia e a qualidade das nossas experiências, para oferecer uma imersão única e desafiante.
+                                    Continuando a desenvolver e melhorar a tecnologia e a qualidade das nossas
+                                     experiências, para oferecer uma imersão única e desafiante.
                                   </div>
                                 </div>
                               </div>
@@ -150,7 +164,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <img src="{{ url('/storage/img/viral_2.jpg') }}" class="img-fluid" style="margin-bottom:80px;margin-top:40px;">
+            <img src="{{ url('/storage/img/viral_2.jpg') }}" class="img-fluid" 
+            style="margin-bottom:80px;margin-top:40px;" alt="viral2">
         </div>
     </div>
 </div>

@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="d-flex" style="height: 350px; margin-top:-50px;">
-    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
+    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" 
+    style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
 </div>
 
 <div class="d-flex justify-content-center align-items-center viral_blue_bg_color" style="height: 100px">
@@ -19,7 +20,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-sm-12 text-center" style="padding-top: 50px;padding-bottom: 50px; padding-left: 50px">
-            <img src="{{ asset('storage/img/'.$product->image) }}" style="height:auto;max-width:inherit">
+            <img src="{{ asset('storage/img/'.$product->image) }}"
+            style="height:auto;max-width:inherit" alt="product-image">
         </div>
         <div class="col-md-6 col-sm-12 text-center" style="padding-top: 50px;padding-bottom: 50px; padding-right: 50px">
             <div class="text-center">
@@ -50,7 +52,8 @@
                     @endforelse
                 </select>
                 <p class="page-subtitle" style="font-size:16px !important;padding-top:30px">ESCOLHA A HORA</p>
-                <select class="form-select" name="hour" aria-label="select-hour" style="margin-top:20px" id="selectHour">
+                <select class="form-select" name="hour" aria-label="select-hour" style="margin-top:20px"
+                id="selectHour">
                     <option value="15:00">15:00</option>
                     <option value="16:00">16:00</option>
                     <option value="17:00">17:00</option>

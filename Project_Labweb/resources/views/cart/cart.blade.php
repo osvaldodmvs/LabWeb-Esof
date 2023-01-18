@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="d-flex" style="height: 350px; margin-top:-50px;">
-    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
+    <img src="{{ asset('/storage/img/cover_viral.jpg') }}" alt="" 
+	style="flex-grow:1;off;max-width:100vw;height:auto;object-fit:cover">
 </div>
 
 <div class="d-flex justify-content-center align-items-center viral_blue_bg_color" style="height: 100px">
@@ -23,7 +24,7 @@
 @endif
 
 <div class="container">
-<table class="table">
+<table class="table" aria-describedby="tabela-produtos">
     <thead style="padding-right: 400px;padding-left:540px">
 		<tr>
         	<th scope="col">Produto</th>

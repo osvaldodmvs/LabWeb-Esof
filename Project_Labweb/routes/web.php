@@ -90,6 +90,7 @@ Route::get('/orders/show/{order}', [OrderController::class, 'show'])->name('orde
 
 Route::get('/payments/show/{payment}', [PaymentController::class, 'show'])->name('payments_show')->middleware('is_admin');
 
+Route::post('/cart_gift', [CartController::class, 'add_giftcard'])->name('cart_add_giftcard')->middleware('auth');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart_index')->middleware('auth');
 Route::post('/cart', [CartController::class, 'add'])->name('cart_add')->middleware('auth');
@@ -101,5 +102,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->
 Route::post('/pay', [CartController::class, 'pay'])->name('pay')->middleware('auth');
 
 Route::get('/success', [CartController::class, 'success'])->name('payment_success')->middleware('auth');
+
+Route::get('/pdf', [PDFController::class, 'generatePDF'])->name('pdf')->middleware('auth');
 
 

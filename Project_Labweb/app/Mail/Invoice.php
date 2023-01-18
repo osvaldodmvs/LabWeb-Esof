@@ -5,6 +5,8 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -18,6 +20,8 @@ class Invoice extends Mailable
      *
      * @return void
      */
+    
+
     public function __construct()
     {
         //
@@ -31,7 +35,7 @@ class Invoice extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Fatura',
+            subject: 'Fatura de Viral Virtual Reality',
         );
     }
 
@@ -43,7 +47,7 @@ class Invoice extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mail.invoicemail',
+            markdown: 'mail.invoicemail',
         );
     }
 
@@ -54,6 +58,7 @@ class Invoice extends Mailable
      */
     public function attachments()
     {
-        return [];
+        return [
+        ];
     }
 }

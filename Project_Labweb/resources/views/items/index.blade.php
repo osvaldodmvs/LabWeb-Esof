@@ -7,6 +7,7 @@
 @section('content')
 <?php
 use App\Models\Product;
+
 ?>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -18,7 +19,8 @@ use App\Models\Product;
     <hr>
     @forelse ($items as $item)
     <li class="list-group-item p-1">
-        <h6>ID: {{$item->id}} - {{(Product::findOrFail($item->product_id))->name}} na data {{$item->start_date}} até {{$item->end_date}} </h6>
+        <h6>ID: {{$item->id}} - {{(Product::findOrFail($item->product_id))->name}}
+             na data {{$item->start_date}} até {{$item->end_date}} </h6>
         <a class="btn btn-primary btn-sm" href="{{url('items/show',$item->id)}}">Ver</a>
     </li>
     @empty

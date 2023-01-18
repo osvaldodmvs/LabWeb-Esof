@@ -7,6 +7,7 @@
 @section('content')
 <?php
 use App\Models\User;
+
 ?>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -18,7 +19,8 @@ use App\Models\User;
     <hr>
     @forelse ($orders as $order)
     <li class="list-group-item p-1">
-        <h6>{{$order->id}} - {{(User::findOrFail($order->user_id))->name}} {{(User::findOrFail($order->user_id))->last_name}} </h6>
+        <h6>{{$order->id}} - {{(User::findOrFail($order->user_id))->name}}
+             {{(User::findOrFail($order->user_id))->last_name}} </h6>
         <a class="btn btn-primary btn-sm" href="{{url('orders/show',$order->id)}}">Ver</a>
     </li>
     @empty
